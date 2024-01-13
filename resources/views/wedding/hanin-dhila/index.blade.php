@@ -1,15 +1,22 @@
 @extends('wedding._layout.main')
+@section('meta')
+    <meta property="og:title" content="HANIN - AULIA">
+    <meta property="og:description" content="20 Januari 2024">
+    <meta property="og:image" content="{{asset('assets/image/wedding/img_couple.PNG')}}">
+@endsection
 @section('wedding-title', 'Aulia - Hanin')
 @section('after-style')
     <style>
-        .fullpage .header {
-            padding-top:30%;
-        }
-        .fullpage .date {
-            margin-top:10%;
-        }
-        .fullpage .receiver {
-            margin-top: 10%;
+        @media only screen and (max-width: 600px) {
+            .fullpage .header {
+                padding-top:30%;
+            }
+            .fullpage .date {
+                margin-top:10%;
+            }
+            .fullpage .receiver {
+                margin-top: 10%;
+            }
         }
     </style>
 @endsection
@@ -21,31 +28,26 @@
             <div class="fullpage justify-content-center text-center pt-5 pos-relative">
 
                 <div class="container">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="header">
-                                <h2 class="font-scmt font-bold">Aulia</h2>
-                                <h4 class="font-scmt font-bold">&</h4>
-                                <h2 class="font-scmt font-bold"> Hanin</h2>
-                            </div>
-                            <div class="date">
-                                <span>20 | 01 | 2024</span>
-                            </div>
-                            <div class="receiver">
-                                <p class="mb-0">Kepada:</p>
-                                <p style="font-size: 1.2em; font-weight:bold">{{ strlen(app('request')->input('to')) > 0 ?
-                                    app('request')->input('to') :
-                                    '-'  }}
-                                </p>
-                                {{-- <a href="#invitation-info" class="btn btn-secondary" id="open-invitation" style="z-index:1000;">
-                                    Open Invitation
-                                </a> --}}
-                                <button class="btn btn-secondary" id="open-invitation" style="z-index:1000;">
-                                    Open Invitation
-                                </button>
-                            </div>
-                        </div>
+                    <div class="header">
+                        <h2 class="font-scmt font-bold">Aulia</h2>
+                        <h4 class="font-scmt font-bold">&</h4>
+                        <h2 class="font-scmt font-bold"> Hanin</h2>
+                    </div>
+                    <div class="date">
+                        <span>20 | 01 | 2024</span>
+                    </div>
+                    <div class="receiver">
+                        <p class="mb-0">Kepada:</p>
+                        <p style="font-size: 1.2em; font-weight:bold">{{ strlen(app('request')->input('to')) > 0 ?
+                            app('request')->input('to') :
+                            '-'  }}
+                        </p>
+                        {{-- <a href="#invitation-info" class="btn btn-secondary" id="open-invitation" style="z-index:1000;">
+                            Open Invitation
+                        </a> --}}
+                        <button class="btn btn-secondary" id="open-invitation" style="z-index:1000;">
+                            Open Invitation
+                        </button>
                     </div>
                 </div>
             </div>
@@ -171,18 +173,6 @@
                     <h4 class="font-scmt font-bold" id="aulia-hanin">
                         Aulia & Hanin
                     </h4>
-                </div>
-                <div class="mt-5">
-                    Ucapan Selamat
-                    <div class="container">
-                        <div class="card">
-                            <div class="card-body">
-                                <form id="message">
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
