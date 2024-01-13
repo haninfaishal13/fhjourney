@@ -1,0 +1,313 @@
+:root {
+    --pink: #d58a94;
+    --navy: rgb(52, 68, 95);
+    --darkblue: rgb(15,28,62);
+    --softpink: rgb(248, 203, 204);
+    --milkwhite:rgb(254, 252, 255);
+    --bg: #0a0a0a;
+    --shadow: 0 2px 2px rgba(255,255,255,0.5);
+}
+
+body{
+    font-size: 1.2rem;
+    font-family: 'Work Sans', sans-serif;
+
+}
+.cover-page{
+    position: absolute;
+    overflow:hidden;
+    top:0px;
+    bottom:0px;
+    width: 100%;
+    max-height: 100%;
+    z-index: 100;
+    /* background-color:#d58a94; */
+    transition: all 1.5s ease-in-out;
+}
+.cover-page .image-ornament-bottom {
+    position: absolute;
+    top:65%;
+}
+
+.cover-page.invitation-open{
+    /* background-color:#d58a94; */
+    top:-100%;
+}
+
+
+.bg-flower{
+    /* background-color: rgba(50,50,50, 0.4); */
+    background-image: url('/assets/image/wedding/wallpaper-flower.jpeg');
+}
+
+.fullpage {
+    min-height: 100vh;
+    overflow:hidden;
+    /* position:relative; */
+    /* background-color: var(--pink) */
+}
+
+.overflow-hidden {
+    overflow:hidden;
+}
+
+.bg-flower-cover-top{
+    position:absolute;
+    right:-20%;
+    top:-40%;
+    transform:rotate(-45deg);
+    transition:all 1s ease-in-out;
+}
+
+.bg-flower-1{
+    position:absolute;
+    right:-10%;
+    top:-40%;
+    transform:rotate(-45deg);
+    transition:all 1s ease-in-out;
+}
+
+.bg-flower-1.active{
+    transform:rotate(0deg);
+}
+
+.bg-flower-2{
+    position:absolute;
+    left:-20%;
+    top:40%;
+    transform:rotate(45deg);
+    transition:all 1s ease-in-out;
+}
+
+.bg-flower-2.active{
+    transform:rotate(0deg);
+}
+
+.bg-flower-3{
+    position:absolute;
+    right:-20%;
+    top:20%;
+    transform:rotate(45deg);
+    transition:all 1s ease-in-out;
+}
+.bg-flower-3.active{
+    transform:rotate(0deg);
+}
+.bg-flower-4{
+    position:absolute;
+    left:-20%;
+    top: 45%;
+    transform:rotate(-45deg);
+    transition:all 1s ease-in-out;
+}
+.bg-flower-4.active{
+    transform:rotate(0deg);
+}
+.bg-flower-5{
+    position:absolute;
+    right:-22%;
+    top: 80%;
+    transform:rotate(-45deg);
+    transition:all 1s ease-in-out;
+}
+.bg-flower-5.active{
+    transform:rotate(0deg);
+}
+
+.fullpage h1 {
+    font-size: 6rem;
+    margin-bottom:0px;
+}
+
+.fullpage h2 {
+    font-size: 4.5rem;
+    margin-bottom:0px;
+}
+
+.fullpage h3 {
+    font-size: 3rem;
+    margin-bottom: 0px;
+}
+
+.fullpage h4 {
+    font-size: 2.3rem;
+    margin-bottom: 0px;
+}
+
+.fullpage h5 {
+    font-size: 1.5rem;
+}
+
+.fullpage h5.font-scmt {
+    font-size:2rem;
+}
+
+.fullpage .font-small {
+    font-size: 1rem;
+}
+
+.fullpage .header {
+    padding-top:5vh;
+}
+
+.fullpage .date {
+    margin-top:5vh;
+}
+
+.fullpage .card {
+    background-color: rgba(255,255,255, 0.4);
+    border-radius: 60px;
+}
+
+.fullpage h1,
+.fullpage h2,
+.fullpage h3,
+.fullpage h4,
+.fullpage h5,
+.fullpage span,
+.fullpage p{
+    text-shadow: var(--shadow)
+}
+
+.fullpage .receiver {
+    margin-top: 14vh;
+}
+
+
+/* .fullpage . */
+
+.btn-music {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 18px;
+    border: solid;
+    border-color:rgba(5,5,5, 0.4);
+    outline: none;
+    background-color: rgba(50,50,50, 0.4);
+    color: white;
+    cursor: pointer;
+    padding: 8px 13px;
+    border-radius: 4px;
+}
+
+.bg-pink {
+    background-image: url('/assets/image/wedding/bg_pink_texture_2.jpeg');
+    background-size:cover;
+    background-position:center;
+}
+
+.bg-pink-mirror {
+    background-image: url('/assets/image/wedding/bg_pink_texture_2_mirror.jpeg');
+    background-size:cover;
+    background-position:center;
+}
+
+.bg-darkblue {
+    background-color: var(--darkblue);
+    color:var(--milkwhite);
+}
+
+.bg-milkwhite {
+    background-color: var(--milkwhite);
+}
+
+.bg-color {
+    background-image: url('/assets/image/bg-color.jpg');
+    background-size:cover;
+    background-position:center;
+}
+
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+.reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+}
+.font-scmt{
+    font-family: 'Sacramento', cursive;
+}
+.font-bold{
+    font-weight:bold;
+}
+.pos-relative{
+    position:relative;
+}
+.welcome-flower-top{
+    position:absolute;
+    left:50%;
+    top:10%;
+}
+.welcome-flower-bottom{
+    position:absolute;
+    left:50%;
+    bottom: 15%;
+}
+.welcome-flower-bottom .img-flower, .welcome-flower-top .img-flower{
+    position:relative;
+    left:-50%;
+}
+.bride-photo, .groom-photo{
+    background-color:antiquewhite;
+    width:10em;
+    box-shadow:5px 10px 18px rgba(0,0,0,.12),5px 10px 18px rgba(0,0,0,.24);
+    border-radius:40%;
+    overflow:hidden;
+}
+
+.couple-photo {
+    width:80vh;
+}
+
+@media only screen and (max-width: 600px) {
+    .fullpage .header {
+        padding-top:30%;
+    }
+    .fullpage .date {
+        margin-top:10%;
+    }
+    .fullpage .receiver {
+        margin-top: 10%;
+    }
+
+    .bg-flower-cover-top{
+        position:absolute;
+        right:-70%;
+        top:-50%;
+    }
+
+    .bg-flower-1{
+        position:absolute;
+        right:-40%;
+        top:-30%;
+    }
+
+    .bg-flower-2{
+        position:absolute;
+        left:-55%;
+        top:45%;
+    }
+
+    .bg-flower-3{
+        position:absolute;
+        right:-70%;
+        top:20%;
+    }
+    .bg-flower-4{
+        position:absolute;
+        left:-70%;
+        top:50%
+    }
+    .bg-flower-5{
+        position:absolute;
+        right:-70%;
+        top: 94%;
+    }
+    .couple-photo {
+        width:90vw;
+    }
+}
