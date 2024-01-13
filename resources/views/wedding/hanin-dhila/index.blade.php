@@ -23,8 +23,8 @@
 @section('wedding-content')
     <div id="cover" class="cover-page">
         <div class="fullpage bg-pink pos-relative">
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" width = 700>
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" width = 700>
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" width = 500>
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" width = 500>
             <div class="fullpage justify-content-center text-center pt-5 pos-relative">
 
                 <div class="container">
@@ -56,9 +56,9 @@
     <div id="invitation-info" class="d-none">
         <audio src="{{asset('assets/music/always-with-me.mp3')}}" id="audio" loop></audio>
         <div class="fullpage bg-pink">
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" id="flower-2" width = 700>
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" id="flower-2" width = 500>
             <div class="fullpage d-flex align-items-center pos-relative">
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" id="flower-1" width = 700>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" id="flower-1" width = 500>
                 <div class="container">
                     <div class="row d-flex justify-content-center text-center mx-3">
                         <div class="col-md-6 col-12">
@@ -80,9 +80,9 @@
                 </div>
             </div>
             <div id="home" class="fullpage justify-content-center text-center py-5 pos-relative">
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-3" id="flower-3" width = 700>
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-4" id="flower-4" width = 700>
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-5" id="flower-5" width = 700>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-3" id="flower-3" width = 500>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-4" id="flower-4" width = 500>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-5" id="flower-5" width = 500>
                 <div class="container" id="salam">
                     <div class="mx-3">
                         <h5 class="font-scmt font-bold">
@@ -174,6 +174,29 @@
                         Aulia & Hanin
                     </h4>
                 </div>
+                <div class="container" id="message-wishes">
+                    <hr class="mt-5">
+                    <h3 class="font-scmt font-bold">Kartu Ucapan</h3>
+                    <div class="card text-start" style="border-radius:5px;">
+                        <div class="card-body">
+                            <form id="form-message">
+                                <div class="mb-3">
+                                    <label for="sender" class="form-label">Nama:</label>
+                                    <input type="text" name="sender" class="form-control" id="sender" aria-describedby="sender">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="content" class="form-label">Pesan:</label>
+                                    <input type="text" name="content" class="form-control" id="content" aria-describedby="sender">
+                                </div>
+                                <div class="text-end d-flex flex-row-reverse align-items-center">
+                                    <button class="btn btn-secondary btn-sm" id="send-message">Kirim</button>
+                                    <div class="lds-dual-ring" id="loading"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container mt-5 text-start message-list pt-3" id="message-list"></div>
+                </div>
             </div>
         </div>
         <span class="btn-music rounded-circle" id="music" data="pause">
@@ -201,6 +224,7 @@
     let flower3Top = 0;
     let flower4Top = 0;
     let flower5Top = 0;
+    let messageWishesTop = 0;
 
 
     let loadSalam = false;
@@ -220,11 +244,13 @@
     let loadFlower3 = false;
     let loadFlower4 = false;
     let loadFlower5 = false;
+    let loadMessageWishes = false;
     document.getElementById('open-invitation').addEventListener('click', () => {
         const audio = document.getElementById('audio');
         audio.play();
         document.getElementById('cover').classList.add('invitation-open');
         document.getElementById('invitation-info').classList.remove('d-none');
+        getMessage();
 
         salamTop = document.getElementById('salam').offsetTop;
         groomTop = document.getElementById('groom').offsetTop;
@@ -243,6 +269,7 @@
         flower3Top = document.getElementById('flower-3').offsetTop;
         flower4Top = document.getElementById('flower-4').offsetTop;
         flower5Top = document.getElementById('flower-5').offsetTop;
+        messageWishesTop = document.getElementById('message-wishes').offsetTop;
 
         document.getElementById('salam').classList.add('reveal');
         document.getElementById('groom').classList.add('reveal');
@@ -258,6 +285,7 @@
         document.getElementById('couple-photo').classList.add('reveal');
         document.getElementById('sincerely').classList.add('reveal');
         document.getElementById('aulia-hanin').classList.add('reveal');
+        document.getElementById('message-wishes').classList.add('reveal');
         // if(checkIsMobile) document.getElementById('flower-5').classList.add('active');
         setTimeout(() => {
             document.getElementById('flower-1').classList.add('active');
@@ -301,6 +329,7 @@
         const flower3 = document.getElementById('flower-3');
         const flower4 = document.getElementById('flower-4');
         const flower5 = document.getElementById('flower-5');
+        const messageWishes = document.getElementById('message-wishes');
         if(checkIsMobile ? (window.scrollY >= salamTop) : (window.scrollY >= salamTop / 3)) {
             if(!loadSalam) {
                 loadSalam = true;
@@ -333,16 +362,15 @@
                 groomDiv.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY >= saveDateTop) : (window.scrollY >= saveDateTop)) {
+        if(window.scrollY >= saveDateTop) {
             if(!loadSaveDate) {
                 loadSaveDate = true;
             }
             if(!saveDateDiv.classList.contains('active')) {
-                console.log("saveDateDiv active", saveDateTop, window.scrollY);
                 saveDateDiv.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > akadTop) : (window.scrollY > akadTop)) {
+        if(window.scrollY > akadTop) {
             if(!loadAkad) {
                 loadAkad = true;
             }
@@ -350,7 +378,7 @@
                 akadDiv.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > resepsiTop) : (window.scrollY > resepsiTop)) {
+        if(window.scrollY > resepsiTop) {
             if(!loadResepsi) {
                 loadResepsi = true;
             }
@@ -358,7 +386,7 @@
                 resepsiDiv.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > countdownAcaraTop) : (window.scrollY > countdownAcaraTop)) {
+        if(window.scrollY > countdownAcaraTop) {
             if(!loadCountdownAcara) {
                 loadCountdownAcara = true;
             }
@@ -366,7 +394,7 @@
                 countdownAcara.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > countdownTop) : (window.scrollY > countdownTop)) {
+        if(window.scrollY > countdownTop) {
             if(!loadCountdown) {
                 loadCountdown = true;
             }
@@ -374,7 +402,7 @@
                 countdown.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > terimaKasihTop) : (window.scrollY > terimaKasihTop)) {
+        if(window.scrollY > terimaKasihTop) {
             if(!loadTerimaKasih) {
                 loadTerimaKasih = true;
             }
@@ -382,7 +410,7 @@
                 terimaKasih.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > endSalamTop) : (window.scrollY > endSalamTop)) {
+        if(window.scrollY > endSalamTop) {
             if(!loadEndSalam) {
                 loadEndSalam = true;
             }
@@ -390,7 +418,7 @@
                 endSalam.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > couplePhotoTop) : (window.scrollY > couplePhotoTop)) {
+        if(window.scrollY > couplePhotoTop) {
             if(!loadCouplePhoto) {
                 loadCouplePhoto = true;
             }
@@ -398,7 +426,7 @@
                 couplePhoto.classList.add('active');
             }
         }
-        if(checkIsMobile ? (window.scrollY > sincerelyTop) : (window.scrollY > sincerelyTop)) {
+        if(window.scrollY > sincerelyTop) {
             if(!loadSincerely) {
                 loadSincerely = true;
             }
@@ -430,13 +458,20 @@
                 flower4.classList.add('active');
             }
         }
-        if(isMobile ? (window.scrollY > flower5Top) : (window.scrollY > flower5Top)) {
+        if(window.scrollY >= flower5Top) {
             if(!loadFlower5) {
-                console.log(window.scrollY, flower5Top);
                 loadFlower5 = true;
             }
             if(!flower5.classList.contains('active')) {
                 flower5.classList.add('active');
+            }
+        }
+        if(window.scrollY >= messageWishesTop * 0.8) {
+            if(!loadMessageWishes) {
+                loadMessageWishes = true;
+            }
+            if(!messageWishes.classList.contains('active')) {
+                messageWishes.classList.add('active');
             }
         }
     })
@@ -457,6 +492,75 @@
         const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
         return regex.test(navigator.userAgent);
     }
+    document.getElementById('form-message').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const sender = document.getElementById('sender').value;
+        const content = document.getElementById('content').value;
+        const formMessage = document.getElementById('form-message');
+        const formData = new FormData(formMessage);
+        const url = base_url + '/wedding-invitation/backsite/storeMessage';
+        if(sender === '' || content === '') return;
+        document.getElementById('sender').setAttribute('disabled', '');
+        document.getElementById('content').setAttribute('disabled', '');
+        document.getElementById('send-message').setAttribute('disabled', '');
+        document.getElementById('loading').classList.add('lds-visible');
+        fetch(url, {
+                headers: {
+                "X-CSRF-TOKEN": token
+            },
+            method: 'post',
+            body: formData
+        })
+        .then(response => response.json())
+        .then((data) => {
+            if(data.success) {
+                let html = `
+                    <div class="card mb-2 message-content" style="border-radius:5px;">
+                        <div class="card-body">
+                            <div class="container ms-3">
+                                <span class="font-bold">${sender}</span>
+                                <hr class="my-0">
+                                <p class="font-small mb-0">${content}</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+                html += document.getElementById('message-list').innerHTML;
+                document.getElementById('message-list').innerHTML = html;
+            }
+            document.getElementById('sender').removeAttribute('disabled');
+            document.getElementById('sender').value = '';
+            document.getElementById('content').removeAttribute('disabled');
+            document.getElementById('content').value = '';
+            document.getElementById('send-message').removeAttribute('disabled');
+            document.getElementById('loading').classList.remove('lds-visible');
+        })
+    })
 
+    function getMessage() {
+        const url = base_url + '/wedding-invitation/backsite/getMessage';
+        fetch(url, {
+            method: 'get',
+        })
+        .then(response => response.json())
+        .then((data) => {
+            let html = '';
+            for(let i=0 ; i<data.data.length ; i++) {
+                const item = data.data[i]
+                html += `
+                <div class="card mb-2 message-content" style="border-radius:5px;">
+                    <div class="card-body">
+                        <div class="container ms-3">
+                            <span class="font-bold">${item.sender}</span>
+                            <hr class="my-0">
+                            <p class="font-small mb-0">${item.content}</p>
+                        </div>
+                    </div>
+                </div>
+                `
+            }
+            document.getElementById('message-list').innerHTML = html;
+        });
+    }
 </script>
 @endsection

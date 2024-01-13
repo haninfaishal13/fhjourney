@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('wedding-invitation', function() {
-    return view('wedding.hanin-dhila.index');
+Route::group(['prefix' => 'wedding-invitation'], function() {
+    Route::get('/', function() {
+        return view('wedding.hanin-dhila.index');
+    });
+    Route::group(['prefix' => 'backsite'], function() {
+        Route::get('getMessage', [MessageController::class, 'getMessage']);
+        Route::post('storeMessage', [MessageController::class, 'storeMessage']);
+    });
 });
