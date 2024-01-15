@@ -23,8 +23,8 @@
 @section('wedding-content')
     <div id="cover" class="cover-page">
         <div class="fullpage bg-pink pos-relative">
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" width = 500>
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" width = 500>
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" >
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" >
             <div class="fullpage justify-content-center text-center pt-5 pos-relative">
 
                 <div class="container">
@@ -55,10 +55,10 @@
     </div>
     <div id="invitation-info" class="d-none">
         <audio src="{{asset('assets/music/always-with-me.mp3')}}" id="audio" loop></audio>
-        <div class="fullpage bg-pink">
-            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" id="flower-2" width = 500>
+        <div id="particles-js" class="fullpage bg-pink">
+            <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-2" id="flower-2" >
             <div class="fullpage d-flex align-items-center pos-relative">
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" id="flower-1" width = 500>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_mirror_rotate.png')}}" class="bg-flower-1" id="flower-1" >
                 <div class="container">
                     <div class="row d-flex justify-content-center text-center mx-3">
                         <div class="col-md-6 col-12">
@@ -80,9 +80,9 @@
                 </div>
             </div>
             <div id="home" class="fullpage justify-content-center text-center py-5 pos-relative">
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-3" id="flower-3" width = 500>
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-4" id="flower-4" width = 500>
-                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-5" id="flower-5" width = 500>
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-3" id="flower-3" >
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_5_reverse.png')}}" class="bg-flower-4" id="flower-4" >
+                <img src="{{asset('assets/image/wedding/flower_pink/flower_pink_2.png')}}" class="bg-flower-5" id="flower-5" >
                 <div class="container" id="salam">
                     <div class="mx-3">
                         <h5 class="font-scmt font-bold">
@@ -205,6 +205,8 @@
     </div>
 @endsection
 @section('after-script')
+<script src="{{asset('js/wedding/particlesjs/particles.js')}}"></script>
+{{-- <script src="{{asset('js/wedding/particlesjs/app.js')}}"></script> --}}
 <script>
     const checkIsMobile = isMobile();
     let salamTop = 0;
@@ -251,6 +253,7 @@
         document.getElementById('cover').classList.add('invitation-open');
         document.getElementById('invitation-info').classList.remove('d-none');
         getMessage();
+        setParticle();
 
         salamTop = document.getElementById('salam').offsetTop;
         groomTop = document.getElementById('groom').offsetTop;
@@ -293,6 +296,11 @@
         }, 100);
         setTimeout(() => {
             document.getElementById('cover').classList.add('d-none');
+            const fullpage = document.getElementsByClassName('fullpage');
+            for(let i=0 ; i<fullpage.length ; i++) {
+                fullpage[i].classList.add('index-top');
+            }
+            document.getElementById('music').classList.add('index-top');
         }, 1500);
     })
     document.getElementById('music').addEventListener('click', () => {
@@ -561,6 +569,127 @@
             }
             document.getElementById('message-list').innerHTML = html;
         });
+    }
+    function setParticle() {
+        particlesJS('particles-js',
+            {
+                "particles": {
+                "number": {
+                    "value": 15,
+                    "density": {
+                    "enable": true,
+                    "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                    },
+                    "polygon": {
+                    "nb_sides": 5
+                    },
+                    "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                    }
+                },
+                "size": {
+                    "value": 10,
+                    "random": true,
+                    "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "bottom",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                    }
+                }
+                },
+                "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                    "enable": false,
+                    "mode": "repulse"
+                    },
+                    "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                    },
+                    "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                    },
+                    "repulse": {
+                    "distance": 200
+                    },
+                    "push": {
+                    "particles_nb": 4
+                    },
+                    "remove": {
+                    "particles_nb": 2
+                    }
+                }
+                },
+                "retina_detect": true,
+                "config_demo": {
+                "hide_card": false,
+                "background_color": "#b61924",
+                "background_image": "",
+                "background_position": "50% 50%",
+                "background_repeat": "no-repeat",
+                "background_size": "cover"
+                }
+            }
+
+            );
     }
 </script>
 @endsection
